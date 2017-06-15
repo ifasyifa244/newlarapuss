@@ -19,3 +19,11 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index');
 Route::resource('/middle', 'MiddleController@index');
+
+Route::group(['middleware'=>'web'], function(){
+	Route::group(['prefix'=>'admin','middleware'=>['auth','role:admin']],function(){
+	Route::resource('authors','AuthorsController');
+});
+});
+
+
