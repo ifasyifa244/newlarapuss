@@ -17,6 +17,8 @@ Route::get('/', function () {
 
 Auth::routes();
 
+Route::get('/','GuestController@index');
+
 Route::get('/home', 'HomeController@index');
 Route::resource('/middle', 'MiddleController@index');
 
@@ -27,6 +29,8 @@ Route::group(['middleware'=>'web'], function(){
 
 });
 });
+
+
 
 
 

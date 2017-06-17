@@ -5,6 +5,8 @@
 
     <link rel="stylesheet" type="text/css" href="/css/font-awesome.min.css">
     <link rel="stylesheet"  href="/css/bootstrap.min.css">
+    <link rel="stylesheet"  href="/css/selectize.css">
+    <link rel="stylesheet"  href="/css/selectize.bootstrap3.css">
     <link rel="stylesheet" href="/css/jquery.dataTables.css">
     <link rel="stylesheet"  href="/css/dataTables.bootstrap.css">
     
@@ -103,8 +105,10 @@
     <script src="/js/app.js"></script>
     <script src="/js/jquery.dataTables.min.js"></script>
     <script src="/js/dataTables.bootstrap.min.js"></script>
+    <script src="/js/selectize.min.js"></script>
     <script src="/js/custom.js"></script>
         @yield('scripts')
+        <script src="{{'js/app.js'}}"></script>
 
     
 </body>
