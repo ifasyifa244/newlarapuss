@@ -1,2 +1,2 @@
-<a href="{{ $link = url('auth/verify').'?email='.urlencode($user->email)}}">{{$link}}</a>
+<a href="{{ $link = url('auth/verify',$token).'?email='.urlencode($user->email)}}">{{$link}}</a>
 

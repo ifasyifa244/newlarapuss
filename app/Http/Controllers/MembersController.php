@@ -7,7 +7,7 @@ use App\Role;
 use App\User;
 use Yajra\Datatables\Html\Builder;
 use Yajra\Datatables\Facades\Datatables;
-use App\Http\Request\StoreMemberRequest;
+use App\Http\Requests\StoreMemberRequest;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Mail;
 use App\Http\Requests\UpdateMemberRequest;
