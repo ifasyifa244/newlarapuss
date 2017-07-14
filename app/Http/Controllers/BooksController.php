@@ -130,7 +130,7 @@ class BooksController extends Controller
         //
 
         $book=Book::find($id);
-        $book->update($request->all());
+        if(!$book->update($request->all()))return redirect()->back();
 
         if ($request->hasFile('cover')) {
             # code...
@@ -178,8 +178,10 @@ class BooksController extends Controller
     {
         //
         $book=Book::find($id);
+        $cover=$book->cover;
+        if(!$book->delete()) return redirect()->back();
 
-        if ($book->cover) {
+        if ($cover) {
             # code...
             $old_cover=$book->cover;
             $filepath=public_path() . DIRECTORY_SEPARATOR . 'img'
@@ -192,13 +194,11 @@ class BooksController extends Controller
         }
         }
 
-        $book->delete();
-
         Session::flash("flash_notification",[
             "level"=>"success",
             "message"=>"Buku Berhasil Dihapus"
             ]);
-        return redirect()->route('books.index');
+        return redirect()->route('admin.books.index');
     }
 
     public function borrow($id){
@@ -228,4 +228,24 @@ class BooksController extends Controller
         }
         return redirect('/');
     }
+    public function returnBack($book_id)
+    {
+        $borrowLog=BorrowLog::where('user_id',Auth::user()->id)
+        ->where('book_id',$book_id)
+        ->where('is_returned',0)
+        ->first();
+
+        if ($borrowLog) {
+            # code...
+            $borrowLog->is_returned=true;
+            $borrowLog->save();
+
+            Session::flash("flash_notification",[
+                "level"=>"success",
+                "message"=>"Berhasil Mengembalikan" . $borrowLog->book->title
+                ]);
+        }
+        return redirect('/home');
+    }
+
 }
